@@ -2,7 +2,6 @@ package demo.gui.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import demo.gui.components.compare.ReviewsComponent;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,9 +16,6 @@ public class PopularItemPage extends AbstractPage {
     @FindBy(xpath = ".//div[@class = 'tabs__switcher']/span")
     private ExtendedWebElement rewiewsButton;
 
-    @FindBy(xpath = "//span[@class = 'reviews-rate cr-reviews-rate-5']")
-    private List<ReviewsComponent> reviewsFiveStars;
-
     public PopularItemPage(WebDriver driver) {
         super(driver);
     }
@@ -29,11 +25,6 @@ public class PopularItemPage extends AbstractPage {
         return basketButton.isPresent();
     }
 
-    public int getReviewsFiveStarsCount() {
-        rewiewsButton.assertElementPresent(18);
-        rewiewsButton.click();
-        return reviewsFiveStars.size();
-    }
 
 }
 

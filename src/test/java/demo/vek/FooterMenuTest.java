@@ -33,7 +33,7 @@ public class FooterMenuTest extends BaseTest{
         BasePage homePage = openHomePage(getDriver());
         FooterMenu footerMenu = homePage.getFooterMenu();
         Insurance insurance = footerMenu.openInsurancePage();
-        Assert.assertTrue(insurance.isPageOpened(), "Item Page was not opened!");
+        Assert.assertTrue(insurance.isPageOpened(), "Insurance Page was not opened!");
     }
 
     @Test
@@ -42,7 +42,7 @@ public class FooterMenuTest extends BaseTest{
         BasePage homePage = openHomePage(getDriver());
         FooterMenu footerMenu = homePage.getFooterMenu();
         Order order = footerMenu.openOrderPage();
-        Assert.assertTrue(order.isPageOpened(), "Item Page was not opened!");
+        Assert.assertTrue(order.isPageOpened(), "Order Page was not opened!");
     }
 
     @Test
@@ -51,7 +51,7 @@ public class FooterMenuTest extends BaseTest{
         BasePage homePage = openHomePage(getDriver());
         FooterMenu footerMenu = homePage.getFooterMenu();
         PublicOffer publicOffer = footerMenu.openPublicOfferPage();
-        Assert.assertTrue(publicOffer.isPageOpened(), "Item Page was not opened!");
+        Assert.assertTrue(publicOffer.isPageOpened(), "PublicOffer Page was not opened!");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class FooterMenuTest extends BaseTest{
         BasePage homePage = openHomePage(getDriver());
         FooterMenu footerMenu = homePage.getFooterMenu();
         Reviews reviews = footerMenu.openReviewsPage();
-        Assert.assertTrue(reviews.isPageOpened(), "Item Page was not opened!");
+        Assert.assertTrue(reviews.isPageOpened(), "Reviews Page was not opened!");
     }
 
     @Test
@@ -69,7 +69,7 @@ public class FooterMenuTest extends BaseTest{
         BasePage homePage = openHomePage(getDriver());
         FooterMenu footerMenu = homePage.getFooterMenu();
         SelfDelivery selfDelivery = footerMenu.openSelfDeliveryPage();
-        Assert.assertTrue(selfDelivery.isPageOpened(), "Item Page was not opened!");
+        Assert.assertTrue(selfDelivery.isPageOpened(), "SelfDelivery Page was not opened!");
     }
 
 }

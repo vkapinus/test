@@ -20,5 +20,4 @@ public class NewsComponent extends AbstractUIObject {
         newsLabel.click();
         return new NewsPage(this.driver);
     }
-
 }

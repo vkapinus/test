@@ -1,26 +1,22 @@
-package demo.gui.pages;
+package demo.gui.pages.footerPages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class NewsPage extends AbstractPage {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(NewsPage.class);
+public class Delivery extends AbstractPage {
 
     @FindBy(xpath = ".//h1[@class='content__header']")
-    private ExtendedWebElement header;
+    private ExtendedWebElement deliveryHeader;
 
-    public NewsPage(WebDriver driver) {
+    public Delivery(WebDriver driver) {
         super(driver);
+        setPageURL("/services/delivery.html");
     }
 
     @Override
     public boolean isPageOpened() {
-        return header.isPresent();
+        return deliveryHeader.isPresent();
     }
-
 }

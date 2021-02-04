@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ResultSearchPage extends AbstractPage {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ResultSearchPage.class);
 
     @FindBy(xpath = ".//h1[@class='content__header cr-category_header']")

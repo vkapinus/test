@@ -30,7 +30,6 @@ public class SearchComponent extends AbstractUIObject {
         searchInput.click();
     }
 
-
     public SearchComponent setSearchInput(String query) {
         searchInput.type(query);
         return this;
@@ -41,4 +40,3 @@ public class SearchComponent extends AbstractUIObject {
         return new ResultSearchPage(driver);
     }
 }
-

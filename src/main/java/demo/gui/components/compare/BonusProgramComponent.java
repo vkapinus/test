@@ -20,5 +20,4 @@ public class BonusProgramComponent extends AbstractUIObject {
         bonusLabel.click();
         return new BonusProgramPage(this.driver);
     }
-
 }

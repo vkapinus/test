@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class BonusProgramPage extends AbstractPage {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(BonusProgramPage.class);
 
     @FindBy(xpath = ".//h1[@class='content__header']")

@@ -21,19 +21,32 @@ public class BasePage extends AbstractPage {
     @FindBy(id = "j-search")
     private SearchComponent searchFrame;
 
+    @FindBy(id = "footmenu")
+    private FooterMenu footerMenu;
+
     @FindBy(xpath = "//ul[@class ='b-foreign_goods']/li")
     private List<PopularPrimeryComponent> primeryComponents;
+
+    @FindBy(xpath = "//button[@class='styles_reactButton__2olKd react-subscription-form__submit-btn']")
+    private ExtendedWebElement buttonSubscription;
+
+    @FindBy(xpath = "//input[@class='react-input__input react-subscription-form__input']")
+    private NewsSubscriptionComponent emailInput;
+
 
     public BasePage(WebDriver driver) {
         super(driver);
         setPageAbsoluteURL("https://21vek.by");
     }
 
+    public FooterMenu getFooterMenu() {
+        return footerMenu;
+    }
+
     @Override
     public boolean isPageOpened() {
         return logo.isPresent() && primeryComponents.size() > 0;
     }
-
 
     public PopularItemPage openItemFromPrimaryPane(String title) {
 
@@ -82,7 +95,11 @@ public class BasePage extends AbstractPage {
         return searchFrame.navigateToResult();
     }
 
+    public BasePage subscribeToNews(String email){
+        emailInput.activate();
+        emailInput.setEmailInput(email);
+        buttonSubscription.click();
+        return new BasePage(this.driver);
 
-
-
+    }
 }

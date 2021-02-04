@@ -2,17 +2,17 @@ package demo.vek;
 
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.BasePage;
-import demo.gui.pages.NewsPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class OpenNewsPageTest extends BaseTest{
+public class SubscribeToNewsTest extends BaseTest {
 
+    private static final String email = "random@gmail.com";
     @Test
     @MethodOwner(owner = "kapinus")
-    public void testOpenNewsPage() {
+    public void testSubscribeToNews() {
         BasePage homePage = openHomePage(getDriver());
-        NewsPage newsPage = homePage.openNews();
-        Assert.assertTrue(newsPage.isPageOpened(), "News Page was not opened!");
+        BasePage newPage  = homePage.subscribeToNews(email);
+        Assert.assertTrue(newPage.isPageOpened(), "Home Page was not opened!");
     }
 }

@@ -22,5 +22,4 @@ public class AllReviewsPage extends AbstractPage {
     public boolean isPageOpened() {
         return reviewsHeader.isPresent();
     }
-
 }

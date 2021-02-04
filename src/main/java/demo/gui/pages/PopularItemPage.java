@@ -4,11 +4,13 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.List;
 
 public class PopularItemPage extends AbstractPage {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PopularItemPage.class);
 
     @FindBy(xpath = ".//button[@class = 'g-button g-buybtn item__buybtn cr-buybtn__in j-ga_track']")
     private ExtendedWebElement basketButton;
@@ -25,6 +27,4 @@ public class PopularItemPage extends AbstractPage {
         return basketButton.isPresent();
     }
 
-
 }
-

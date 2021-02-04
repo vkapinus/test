@@ -20,5 +20,4 @@ public class AllReviewsComponent extends AbstractUIObject {
         allReviewsLabel.click();
         return new AllReviewsPage(this.driver);
     }
-
 }

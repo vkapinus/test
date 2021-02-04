@@ -13,6 +13,6 @@ public class OpenAllReviewsTest extends BaseTest {
     public void testOpenNewsPage() {
         BasePage homePage = openHomePage(getDriver());
         AllReviewsPage reviewsPage = homePage.openReviews();
-        Assert.assertTrue(reviewsPage.isPageOpened(), "Item Page was not opened!");
+        Assert.assertTrue(reviewsPage.isPageOpened(), "News Page was not opened!");
     }
 }

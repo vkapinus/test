@@ -12,7 +12,6 @@ public class SelfDelivery extends AbstractPage {
 
     public SelfDelivery(WebDriver driver) {
         super(driver);
-        setPageURL("/services/self_delivery.html");
     }
 
     @Override

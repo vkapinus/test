@@ -12,7 +12,6 @@ public class PublicOffer extends AbstractPage {
 
     public PublicOffer(WebDriver driver) {
         super(driver);
-        setPageURL("/services/public_offer.html");
     }
 
     @Override

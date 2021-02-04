@@ -12,8 +12,7 @@ public class Order extends AbstractPage {
 
     public Order(WebDriver driver) {
         super(driver);
-        setPageURL("/services/order.html");
-    }
+     }
 
     @Override
     public boolean isPageOpened() {

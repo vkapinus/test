@@ -13,13 +13,11 @@ public class Reviews extends AbstractPage {
 
     public Reviews(WebDriver driver) {
         super(driver);
-        setPageURL("/services/reviews.html");
-    }
+     }
 
     @Override
     public boolean isPageOpened() {
         return reviewsHeader.isPresent();
     }
-
 
 }

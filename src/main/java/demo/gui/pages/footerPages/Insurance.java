@@ -12,7 +12,6 @@ public class Insurance extends AbstractPage {
 
     public Insurance(WebDriver driver) {
         super(driver);
-        setPageURL("/services/insurance.html");
     }
 
     @Override

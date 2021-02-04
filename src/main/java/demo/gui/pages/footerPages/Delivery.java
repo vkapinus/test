@@ -12,8 +12,7 @@ public class Delivery extends AbstractPage {
 
     public Delivery(WebDriver driver) {
         super(driver);
-        setPageURL("/services/delivery.html");
-    }
+      }
 
     @Override
     public boolean isPageOpened() {

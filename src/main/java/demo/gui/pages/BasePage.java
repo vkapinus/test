@@ -33,6 +33,22 @@ public class BasePage extends AbstractPage {
     @FindBy(xpath = "//input[@class='react-input__input react-subscription-form__input']")
     private NewsSubscriptionComponent emailInput;
 
+    @FindBy(xpath = "//button[@class='styles_userToolsToggler__imcSl']")
+    private ExtendedWebElement accountButton;
+
+    @FindBy(xpath = "//button[@class='userToolsBtn']")
+    private ExtendedWebElement loginButton;
+
+    @FindBy(xpath = "//div[@class='screenHolder-focusable react-popup']")
+    private LoginFormComponent loginFormComponent;
+
+
+    @FindBy(xpath = "//div[@class='styles_itemText__3tymY'][text()='Личные данные']")
+    private ExtendedWebElement personalInfoLink;
+
+
+    @FindBy(xpath = "/dt[@class='navigationItem navigationItemDefault']/span")
+    private List<NavigateMenuComponent> navigateMenuHeader;
 
     public BasePage(WebDriver driver) {
         super(driver);
@@ -69,6 +85,18 @@ public class BasePage extends AbstractPage {
 
     }
 
+    public BasePage openMenuItem(String title) {
+
+        for (NavigateMenuComponent menu : navigateMenuHeader) {
+            if (menu.getName().equals(title)) {
+                return menu.navigateTo();
+            }
+        }
+        throw new NoSuchElementException(String.format("The item with title '%s' not found!", title));
+    }
+
+
+
     public BasketPage openBasket(){
         BasketComponent basketComponent = new BasketComponent(this.driver);
         return basketComponent.navigateTo();
@@ -102,4 +130,23 @@ public class BasePage extends AbstractPage {
         return new BasePage(this.driver);
 
     }
+
+    public BasePage authorization(String email, String pass){
+        accountButton.click();
+        loginButton.isPresent();
+        loginButton.click();
+        loginFormComponent.login(email, pass);
+        return new BasePage(this.driver);
+    }
+
+    public String getEmail(){
+        accountButton.click();
+        loginFormComponent.getPersonEmail();
+        return loginFormComponent.getPersonEmail();
+    }
+
+//    public ResultSearchPage navigateMenuForHome(){
+//        navigateMenuHeader.navigateMenuComponentForHome();
+//        return new ResultSearchPage(this.driver);
+//    }
 }

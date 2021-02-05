@@ -11,8 +11,20 @@ public class BasketPage extends AbstractPage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BasketPage.class);
 
-    @FindBy(id = "content")
-    private ExtendedWebElement order;
+    @FindBy(xpath = "//h2[@class='content__header']")
+    private ExtendedWebElement contentHeader;
+
+    @FindBy(xpath = "//button[@class='g-button cr-button__order j-ga_track']")
+    private ExtendedWebElement orderButton;
+
+    @FindBy(xpath = "//td[@class='g-table-cell basket__item cr-basket__name']/a")
+    private ExtendedWebElement itemName;
+
+    @FindBy(xpath = "//button[@id='j-basket__confirm']")
+    private ExtendedWebElement confirmOrder;
+
+    @FindBy(xpath = "//div[@class='b-order cr-order__delivery']")
+    private ExtendedWebElement deliveryInfoForm;
 
     public BasketPage(WebDriver driver) {
         super(driver);
@@ -20,7 +32,23 @@ public class BasketPage extends AbstractPage {
 
     @Override
     public boolean isPageOpened() {
-        return order.isPresent();
+        return orderButton.isPresent() && contentHeader.isPresent();
     }
+
+    public BasketPage orderItem(){
+        orderButton.click();
+        return new BasketPage(this.driver);
+    }
+
+    public String getItemName() {
+        return itemName.getText();
+    }
+
+    public boolean successAdding(){
+        return deliveryInfoForm.isPresent() && confirmOrder.isPresent();
+    }
+
+
+
 
 }

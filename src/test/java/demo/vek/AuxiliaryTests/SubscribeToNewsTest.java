@@ -1,7 +1,8 @@
-package demo.vek;
+package demo.vek.AuxiliaryTests;
 
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.BasePage;
+import demo.vek.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

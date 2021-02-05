@@ -8,18 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class PopularItemPage extends AbstractPage {
+public class ProductPage extends AbstractPage {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PopularItemPage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductPage.class);
 
     @FindBy(xpath = ".//button[@class = 'g-button g-buybtn item__buybtn cr-buybtn__in j-ga_track']")
     private ExtendedWebElement inBasketButton;
-
-    @FindBy(xpath = "//div[@class='b-info cr-info-attrs']")
-    private ExtendedWebElement descriptionMenu;
-
-    @FindBy(xpath = ".//div[@class = 'tabs__switcher']/span")
-    private ExtendedWebElement rewiewsButton;
 
     @FindBy(xpath = "//div[@class='headerCart']")
     private ExtendedWebElement basketButton;
@@ -30,26 +24,16 @@ public class PopularItemPage extends AbstractPage {
     @FindBy(xpath = "//button[@class = 'g-button']")
     private ExtendedWebElement addReview;
 
-    public PopularItemPage(WebDriver driver) {
+    public ProductPage(WebDriver driver) {
         super(driver);
     }
 
     @Override
     public boolean isPageOpened() {
-        return inBasketButton.isPresent() && descriptionMenu.isPresent();
+        return inBasketButton.isPresent()&&reviewLabel.isPresent();
     }
 
 
 
-    public PopularItemPage addToBasket(){
-        inBasketButton.click();
-        basketButton.click();
-        return this;
-    }
 
-    public PopularItemPage addReview(){
-        reviewLabel.click();
-        addReview.click();
-        return this;
-    }
 }

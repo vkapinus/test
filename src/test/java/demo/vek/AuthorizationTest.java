@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 
 public class AuthorizationTest extends BaseTest{
 
-    private static final String email = "parvikus@gmail.com";
-    private static final String pass = "Vikadima1307";
+    private static final String email = "email";
+    private static final String pass = "password";
 
     @Test
     @MethodOwner(owner = "kapinus")

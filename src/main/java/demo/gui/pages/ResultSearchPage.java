@@ -1,9 +1,9 @@
 package demo.gui.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import demo.gui.components.compare.ResultSearchComponent;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -19,26 +19,24 @@ public class ResultSearchPage extends AbstractPage {
     private ExtendedWebElement resultHeader;
 
 
-    @FindBy(xpath = "className = 'result_name'")
+    @FindBy(xpath = "//ul[@class='b-result__inner']/li")
     private List<ResultSearchComponent> searchComponents;
 
     public ResultSearchPage(WebDriver driver) {
         super(driver);
     }
 
-    @Override
-    public boolean isPageOpened() {
+    public boolean isPageOpened(PageOpeningStrategy byElement) {
         return resultHeader.isPresent();
     }
 
-    public ProductPage searchWordEqualsItems(String title) {
+    public String getHeader(){
+       return resultHeader.getText();
 
-        for (ResultSearchComponent component : searchComponents) {
-            if (component.getName().equals(title)) {
-                return component.navigateTo();
-            }
-        }
-        throw new NoSuchElementException(String.format("The item with title '%s' not found!", title));
+    }
+
+    public ResultSearchComponent getItemByIndex(int index){
+        return searchComponents.get(index);
     }
 
     public String getCategoryName() {

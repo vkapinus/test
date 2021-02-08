@@ -15,8 +15,7 @@ public class BasketComponent extends AbstractUIObject {
         super(driver);
     }
 
-    public BasketPage navigateTo() {
-        basketLabel.assertElementPresent(30);
+    public BasketPage openBasket() {
         basketLabel.click();
         return new BasketPage(this.driver);
     }

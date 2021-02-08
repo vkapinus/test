@@ -12,7 +12,7 @@ public class ProductPage extends AbstractPage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductPage.class);
 
-    @FindBy(xpath = ".//button[@class = 'g-button g-buybtn item__buybtn cr-buybtn__in j-ga_track']")
+    @FindBy(xpath = ".//button[contains(@class, 'g-button g-buybtn')]")
     private ExtendedWebElement inBasketButton;
 
     @FindBy(xpath = "//div[@class='headerCart']")
@@ -32,8 +32,4 @@ public class ProductPage extends AbstractPage {
     public boolean isPageOpened() {
         return inBasketButton.isPresent()&&reviewLabel.isPresent();
     }
-
-
-
-
 }

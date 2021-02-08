@@ -1,6 +1,7 @@
 package demo.gui.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -14,13 +15,13 @@ public class BasketPage extends AbstractPage {
     @FindBy(xpath = "//h2[@class='content__header']")
     private ExtendedWebElement contentHeader;
 
-    @FindBy(xpath = "//button[@class='g-button cr-button__order j-ga_track']")
+    @FindBy(id = "j-basket__ok")
     private ExtendedWebElement orderButton;
 
     @FindBy(xpath = "//td[@class='g-table-cell basket__item cr-basket__name']/a")
     private ExtendedWebElement itemName;
 
-    @FindBy(xpath = "//button[@id='j-basket__confirm']")
+    @FindBy(id = "j-basket__confirm")
     private ExtendedWebElement confirmOrder;
 
     @FindBy(xpath = "//div[@class='b-order cr-order__delivery']")
@@ -28,10 +29,10 @@ public class BasketPage extends AbstractPage {
 
     public BasketPage(WebDriver driver) {
         super(driver);
+
     }
 
-    @Override
-    public boolean isPageOpened() {
+    public boolean isPageOpened(PageOpeningStrategy byElement) {
         return orderButton.isPresent() && contentHeader.isPresent();
     }
 
@@ -44,11 +45,7 @@ public class BasketPage extends AbstractPage {
         return itemName.getText();
     }
 
-    public boolean successAdding(){
+    public boolean validateOrderConfirmationIsShown(){
         return deliveryInfoForm.isPresent() && confirmOrder.isPresent();
     }
-
-
-
-
 }

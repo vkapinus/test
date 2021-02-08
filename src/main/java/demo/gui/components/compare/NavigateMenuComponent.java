@@ -7,34 +7,30 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class NavigateMenuComponent extends AbstractUIObject {
 
-    @FindBy(xpath = ".//dt[@class='navigationItem']/span")
+    @FindBy(xpath = ".//span[@class='pseudoLink pseudoLinkNav']")
     private ExtendedWebElement navigateMenuHeader;
 
-    @FindBy(xpath = "//dd[@class='subnavDescription g-grouplinks__item']/a[text()='Одеяла']")
-    private ExtendedWebElement navigateToProducts;
+    @FindBy(xpath = "//dd[@class='subnavDescription g-grouplinks__item']/a")
+    private List<ExtendedWebElement> navigateCategoryProducts;
 
     public NavigateMenuComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
+    public String getNameCategory(){
+        return navigateMenuHeader.getText();
+    }
 
-    public NavigateMenuComponent navigateMenuComponentForHome(){
+    public BasePage navigateToMenu(){
         navigateMenuHeader.click();
-        navigateToProducts.click();
-        return this;
+        return new BasePage(this.driver);
     }
 
-    public String getName(){
-        return navigateMenuHeader.getAttribute("data-ga_action");
+    public String getNameMenuHeader(){
+        return navigateMenuHeader.getText();
     }
-
-    public BasePage navigateTo(){
-        navigateMenuHeader.click();
-        return null;
-    }
-
-
-
 }

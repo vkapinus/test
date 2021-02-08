@@ -1,29 +1,29 @@
 package demo.vek;
 
+import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.BasePage;
+import demo.gui.pages.ResultSearchPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NavigateMenuTest extends BaseTest{
+import static com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy.BY_ELEMENT;
 
-    private static final String searchWord = "Спорт";
-
-//    @Test
-//    @MethodOwner(owner = "kapinus")
-//    public void testNavigateMenuForHome() {
-//        BasePage homePage = openHomePage(getDriver());
-//        ResultSearchPage newPage  = homePage.navigateMenuForHome();
-//        Assert.assertTrue(newPage.isPageOpened(), "Result Page was not opened!");
-//    }
+public class NavigateMenuTest extends AbstractTest{
+    private static final String sectionName = "Для кухни";
+    private static final String categoryName = "Тостеры";
 
     @Test
     @MethodOwner(owner = "kapinus")
     public void testNavigateMenu() {
-        BasePage homePage = openHomePage(getDriver());
-        Assert.assertTrue(homePage.isPageOpened(), "Home Page was not opened!");
-        homePage.openMenuItem(searchWord);
-
+        BasePage homePage = new BasePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
+        homePage.openMenuItem(sectionName);
+        ResultSearchPage resultSearchPage = homePage.openCategoryProducts(categoryName);
+        Assert.assertTrue(resultSearchPage.isPageOpened(BY_ELEMENT), "Search Page was not opened!");
+        Assert.assertEquals(categoryName, resultSearchPage.getHeader(),
+                "Item does not belong to the selected category");
     }
 
 }

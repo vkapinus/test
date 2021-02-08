@@ -17,12 +17,10 @@ public class PopularPrimeryComponent extends AbstractUIObject {
     }
 
     public String getName() {
-        titleLabel.assertElementPresent(30);
         return titleLabel.getAttribute("title");
     }
 
-    public PopularItemPage navigateTo() {
-        titleLabel.assertElementPresent(30);
+    public PopularItemPage openPopularItemPage() {
         titleLabel.click();
         return new PopularItemPage(this.driver);
     }

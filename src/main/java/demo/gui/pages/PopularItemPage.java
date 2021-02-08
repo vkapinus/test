@@ -1,6 +1,7 @@
 package demo.gui.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -24,32 +25,18 @@ public class PopularItemPage extends AbstractPage {
     @FindBy(xpath = "//div[@class='headerCart']")
     private ExtendedWebElement basketButton;
 
-    @FindBy(xpath = "//span[text() = 'Отзывы']")
-    private ExtendedWebElement reviewLabel;
-
-    @FindBy(xpath = "//button[@class = 'g-button']")
-    private ExtendedWebElement addReview;
 
     public PopularItemPage(WebDriver driver) {
         super(driver);
     }
 
-    @Override
-    public boolean isPageOpened() {
+    public boolean isPageOpened(PageOpeningStrategy byElement) {
         return inBasketButton.isPresent() && descriptionMenu.isPresent();
     }
 
-
-
-    public PopularItemPage addToBasket(){
+    public BasketPage addToBasket(){
         inBasketButton.click();
         basketButton.click();
-        return this;
-    }
-
-    public PopularItemPage addReview(){
-        reviewLabel.click();
-        addReview.click();
-        return this;
+        return new BasketPage(driver);
     }
 }

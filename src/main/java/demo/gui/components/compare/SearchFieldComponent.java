@@ -9,7 +9,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class SearchComponent extends AbstractUIObject {
+public class SearchFieldComponent extends AbstractUIObject {
 
     @FindBy(id = "j-search")
     private ExtendedWebElement searchInput;
@@ -17,12 +17,7 @@ public class SearchComponent extends AbstractUIObject {
     @FindBy(xpath = "//button[@name='sa']")
     private ExtendedWebElement searchButton;
 
-
-    public SearchComponent(WebDriver driver) {
-        super(driver);
-    }
-
-    public SearchComponent(WebDriver driver, SearchContext context){
+    public SearchFieldComponent(WebDriver driver, SearchContext context){
         super(driver, context);
     }
 
@@ -30,7 +25,7 @@ public class SearchComponent extends AbstractUIObject {
         searchInput.click();
     }
 
-    public SearchComponent setSearchInput(String query) {
+    public SearchFieldComponent setSearchInput(String query) {
         searchInput.type(query);
         return this;
     }

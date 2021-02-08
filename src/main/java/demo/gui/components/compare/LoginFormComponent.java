@@ -2,6 +2,7 @@ package demo.gui.components.compare;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import demo.gui.pages.BasePage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -24,14 +25,14 @@ public class LoginFormComponent extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public LoginFormComponent login (String email, String pass){
+    public BasePage login (String email, String pass){
         emailInput.type(email);
         passwordInput.type(pass);
         loginButton.click();
-        return this;
+        return new BasePage(driver);
     }
 
-    public String getPersonEmail() {
+    public String getUserEmail() {
         return personEmail.getText();
     }
 }

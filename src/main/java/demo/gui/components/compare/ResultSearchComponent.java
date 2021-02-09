@@ -8,14 +8,14 @@ import org.openqa.selenium.support.FindBy;
 
 public class ResultSearchComponent extends AbstractUIObject {
 
-    @FindBy(xpath = ".//span[@class='result__name']")
+    @FindBy(className = "result__name")
     private ExtendedWebElement resultItem;
 
     public ResultSearchComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public String getName() {
+    public String getNameItem() {
         return resultItem.getText();
     }
 

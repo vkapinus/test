@@ -16,7 +16,7 @@ public class PopularPrimeryComponent extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public String getName() {
+    public String getNamePopularItem() {
         return titleLabel.getAttribute("title");
     }
 

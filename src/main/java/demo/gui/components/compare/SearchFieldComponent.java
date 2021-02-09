@@ -3,7 +3,7 @@ package demo.gui.components.compare;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
-import demo.gui.pages.ResultSearchPage;
+import demo.gui.pages.SearchResultPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
@@ -21,17 +21,13 @@ public class SearchFieldComponent extends AbstractUIObject {
         super(driver, context);
     }
 
-    public void activate(){
-        searchInput.click();
-    }
-
-    public SearchFieldComponent setSearchInput(String query) {
+    public SearchFieldComponent fillSearch(String query) {
         searchInput.type(query);
         return this;
     }
 
-    public ResultSearchPage navigateToResult(){
+    public SearchResultPage submitSearch(){
         searchButton.sendKeys(Keys.ENTER);
-        return new ResultSearchPage(driver);
+        return new SearchResultPage(driver);
     }
 }

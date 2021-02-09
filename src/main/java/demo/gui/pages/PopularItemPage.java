@@ -1,7 +1,7 @@
 package demo.gui.pages;
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -13,28 +13,23 @@ public class PopularItemPage extends AbstractPage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PopularItemPage.class);
 
-    @FindBy(xpath = "//button[contains(@class, 'g-button g-buybtn')]")
+    @FindBy(className = "item-buy")
     private ExtendedWebElement inBasketButton;
 
-    @FindBy(xpath = "//div[@class='b-info cr-info-attrs']")
+    @FindBy(css = "div[class~=b-info]")
     private ExtendedWebElement descriptionMenu;
 
-    @FindBy(xpath = ".//div[@class = 'tabs__switcher']/span")
-    private ExtendedWebElement rewiewsButton;
-
-    @FindBy(xpath = "//div[@class='headerCart']")
+    @FindBy(className = "headerCart")
     private ExtendedWebElement basketButton;
-
 
     public PopularItemPage(WebDriver driver) {
         super(driver);
+        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
+        setUiLoadedMarker(descriptionMenu);
     }
 
-    public boolean isPageOpened(PageOpeningStrategy byElement) {
-        return inBasketButton.isPresent() && descriptionMenu.isPresent();
-    }
 
-    public BasketPage addToBasket(){
+    public BasketPage addItemToBasket(){
         inBasketButton.click();
         basketButton.click();
         return new BasketPage(driver);

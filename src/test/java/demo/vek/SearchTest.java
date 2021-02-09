@@ -2,12 +2,10 @@ package demo.vek;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import demo.gui.pages.BasePage;
-import demo.gui.pages.ResultSearchPage;
+import demo.gui.pages.HomePage;
+import demo.gui.pages.SearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import static com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy.BY_ELEMENT;
 
 
 public class SearchTest extends AbstractTest {
@@ -17,12 +15,12 @@ public class SearchTest extends AbstractTest {
     @Test
     @MethodOwner(owner = "kapinus")
     public void testSearchProduct() {
-        BasePage homePage = new BasePage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
-        ResultSearchPage searchPage = homePage.getResultSearch(searchWord);
-        Assert.assertTrue(searchPage.isPageOpened(BY_ELEMENT), "Result Search Page was not opened!");
-        String itemName = searchPage.getItemByIndex(index).getName();
+        SearchResultPage searchPage = homePage.showSearchResult(searchWord);
+        Assert.assertTrue(searchPage.isPageOpened(), "Result Search Page was not opened!");
+        String itemName = searchPage.getItemByIndex(index).getNameItem();
         Assert.assertTrue(itemName.contains(searchWord), "Product item's name was not contain searchWord");
     }
 }

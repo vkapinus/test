@@ -1,5 +1,6 @@
 package demo.gui.pages;
 
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
@@ -11,23 +12,20 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class ResultSearchPage extends AbstractPage {
+public class SearchResultPage extends AbstractPage {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ResultSearchPage.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultPage.class);
 
-    @FindBy(xpath = ".//h1[@class='content__header cr-category_header']")
+    @FindBy(xpath = "//h1[contains(@class,'content__header')]")
     private ExtendedWebElement resultHeader;
-
 
     @FindBy(xpath = "//ul[@class='b-result__inner']/li")
     private List<ResultSearchComponent> searchComponents;
 
-    public ResultSearchPage(WebDriver driver) {
+    public SearchResultPage(WebDriver driver) {
         super(driver);
-    }
-
-    public boolean isPageOpened(PageOpeningStrategy byElement) {
-        return resultHeader.isPresent();
+        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
+        setUiLoadedMarker(resultHeader);
     }
 
     public String getHeader(){
@@ -39,7 +37,4 @@ public class ResultSearchPage extends AbstractPage {
         return searchComponents.get(index);
     }
 
-    public String getCategoryName() {
-        return resultHeader.getText();
-    }
 }

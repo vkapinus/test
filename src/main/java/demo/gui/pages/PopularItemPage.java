@@ -28,7 +28,6 @@ public class PopularItemPage extends AbstractPage {
         setUiLoadedMarker(descriptionMenu);
     }
 
-
     public BasketPage addItemToBasket(){
         inBasketButton.click();
         basketButton.click();

@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchResultPage extends AbstractPage {
 
@@ -33,8 +34,8 @@ public class SearchResultPage extends AbstractPage {
 
     }
 
-    public ResultSearchComponent getItemByIndex(int index){
-        return searchComponents.get(index);
+    public List<String> getProductTitles(){
+        return searchComponents.stream().map(e -> e.getNameItem()).collect(Collectors.toList());
     }
 
 }

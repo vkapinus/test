@@ -30,7 +30,6 @@ public class LoginFormComponent extends AbstractUIObject {
         passwordInput.type(pass);
         loginButton.click();
         return new HomePage(driver);
-
     }
 
     public String getUserEmail() {

@@ -8,7 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.List;
 
 public class HomePage extends AbstractPage {
@@ -43,7 +42,6 @@ public class HomePage extends AbstractPage {
         super(driver);
         setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
         setUiLoadedMarker(logo);
-
     }
 
     public PopularItemPage openItemFromPrimaryPane(String title) {
@@ -69,8 +67,8 @@ public class HomePage extends AbstractPage {
     public HomePage authorization(String email, String pass){
         accountButton.click();
         loginButton.click();
-        loginFormComponent.login(email, pass);
-        return this;
+        return loginFormComponent.login(email, pass);
+
     }
 
     public String getUserEmail(){

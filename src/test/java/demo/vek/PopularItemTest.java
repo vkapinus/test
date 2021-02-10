@@ -7,7 +7,6 @@ import demo.gui.pages.PopularItemPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class PopularItemTest extends AbstractTest {
     private static final String ITEM_EXPECTED =
             "Фитнес-трекер Xiaomi Mi Smart Band 5 / BHR4219RU";

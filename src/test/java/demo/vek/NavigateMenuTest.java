@@ -7,8 +7,6 @@ import demo.gui.pages.SearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy.BY_ELEMENT;
-
 public class NavigateMenuTest extends AbstractTest{
     private static final String sectionName = "Для кухни";
     private static final String categoryName = "Тостеры";
@@ -22,8 +20,7 @@ public class NavigateMenuTest extends AbstractTest{
         homePage.openMenuItem(sectionName);
         SearchResultPage resultSearchPage = homePage.openCategoryProducts(categoryName);
         Assert.assertTrue(resultSearchPage.isPageOpened(), "Search Page was not opened!");
-        Assert.assertEquals(categoryName, resultSearchPage.getHeader(),
+        Assert.assertEquals(categoryName, resultSearchPage.getResultHeader(),
                 "Item does not belong to the selected category");
     }
-
 }

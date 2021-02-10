@@ -6,22 +6,21 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-
 public class NavigateMenuComponent extends AbstractUIObject {
 
     @FindBy(css = "span[class~=navigationLink]>span")
-    private ExtendedWebElement navigateMenuHeader;
+    private ExtendedWebElement sectionHeader;
 
     public NavigateMenuComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public String getNameMenuHeader(){
-        return navigateMenuHeader.getText();
+        return sectionHeader.getText();
     }
 
     public NavigateMenuComponent showMenuOptions(){
-        navigateMenuHeader.click();
+        sectionHeader.click();
         return this;
     }
 }

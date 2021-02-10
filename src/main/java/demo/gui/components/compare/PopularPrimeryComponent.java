@@ -24,5 +24,4 @@ public class PopularPrimeryComponent extends AbstractUIObject {
         titleLabel.click();
         return new PopularItemPage(this.driver);
     }
-
 }

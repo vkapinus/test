@@ -2,7 +2,6 @@ package demo.gui.components.compare;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-
 import demo.gui.pages.SearchResultPage;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.SearchContext;

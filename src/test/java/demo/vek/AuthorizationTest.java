@@ -20,4 +20,3 @@ public class AuthorizationTest extends AbstractTest {
                 "Authorization was not success");
     }
 }
-

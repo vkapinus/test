@@ -18,5 +18,4 @@ public class ResultSearchComponent extends AbstractUIObject {
     public String getNameItem() {
         return resultItem.getText();
     }
-
 }

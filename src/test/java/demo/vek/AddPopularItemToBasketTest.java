@@ -8,7 +8,6 @@ import demo.gui.pages.PopularItemPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class AddPopularItemToBasketTest extends AbstractTest {
     private static final String ITEM_EXPECTED =
             "Термокружка 21vek 1186/7 (черный/красный)";

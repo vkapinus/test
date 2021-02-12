@@ -15,6 +15,9 @@ public class PopularItemPage extends AbstractPage {
     @FindBy(className = "item-buy")
     private ExtendedWebElement inBasketButton;
 
+    @FindBy(xpath = "//div[@class='content__header']/h1")
+    private ExtendedWebElement itemName;
+
     @FindBy(css = "div[class~=b-info]")
     private ExtendedWebElement descriptionMenu;
 
@@ -31,5 +34,9 @@ public class PopularItemPage extends AbstractPage {
         inBasketButton.click();
         basketButton.click();
         return new BasketPage(driver);
+    }
+
+    public String getItemName(){
+        return itemName.getText();
     }
 }

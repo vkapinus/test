@@ -6,6 +6,8 @@ import demo.gui.pages.HomePage;
 import demo.gui.pages.SearchResultPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 import java.util.List;
 
 public class SearchTest extends AbstractTest {
@@ -19,8 +21,9 @@ public class SearchTest extends AbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         SearchResultPage searchPage = homePage.showSearchResult(searchWord);
         Assert.assertTrue(searchPage.isPageOpened(), "Result Search Page was not opened!");
+        SoftAssert softAssert = new SoftAssert();
         List<String> productTitles = searchPage.getProductTitles();
-        productTitles.forEach(e->Assert.assertTrue(e.contains(searchWord),
-                "Product was not found"));
+        productTitles.forEach(e->softAssert.assertTrue(e.contains(searchWord),
+                "The titles of the searched items and the title of the current item are not equals"));
     }
 }

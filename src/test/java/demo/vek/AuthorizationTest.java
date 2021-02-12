@@ -17,6 +17,6 @@ public class AuthorizationTest extends AbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         homePage.authorization(R.TESTDATA.get("email"), R.TESTDATA.get("pass"));
         Assert.assertEquals(homePage.getUserEmail(), R.TESTDATA.get("email"),
-                "Authorization was not success");
+                "Authorization was not successful");
     }
 }

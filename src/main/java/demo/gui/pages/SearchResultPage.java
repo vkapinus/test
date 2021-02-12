@@ -28,7 +28,7 @@ public class SearchResultPage extends AbstractPage {
     }
 
     public String getResultHeader(){
-       return resultHeader.getText();
+        return resultHeader.getText();
     }
 
     public List<String> getProductTitles(){

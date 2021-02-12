@@ -27,6 +27,6 @@ public class AddPopularItemToBasketTest extends AbstractTest {
                 "The Item was not added to basket");
         basketPage.openBasketFromItemPage();
         Assert.assertTrue(basketPage.showSuccessOrderConfirmation(),
-                "Adding item to basket was not success!");
+                "Adding item to basket was not successful!");
     }
 }

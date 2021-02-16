@@ -19,7 +19,7 @@ public class PopularItemTest extends AbstractTest {
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         PopularItemPage itemPage = homePage.openItemFromPrimaryPane(ITEM_EXPECTED);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
-        Assert.assertTrue(itemPage.getItemName().equals(ITEM_EXPECTED),
+        Assert.assertEquals(itemPage.getItemName(), ITEM_EXPECTED,
                 "The title of the searched item and the title of the current item are not equals");
     }
 }

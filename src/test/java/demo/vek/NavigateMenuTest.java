@@ -2,25 +2,28 @@ package demo.vek;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import demo.gui.pages.HomePage;
-import demo.gui.pages.SearchResultPage;
+import demo.gui.pages.common.HomeBasePage;
+import demo.gui.pages.common.SearchResultBasePage;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NavigateMenuTest extends AbstractTest{
     private static final String sectionName = "Для кухни";
-    private static final String categoryName = "Тостеры";
+    private static final String categoryName = "Мелкая техника";
+    private static final String productsName = "Тостеры";
 
     @Test
     @MethodOwner(owner = "kapinus")
     public void testNavigateMenu() {
-        HomePage homePage = new HomePage(getDriver());
+        HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         homePage.openMenuItem(sectionName);
-        SearchResultPage resultSearchPage = homePage.openCategoryProducts(categoryName);
+        homePage.openCategoryItem(categoryName);
+        SearchResultBasePage resultSearchPage = homePage.openProductsFromNavigateMenu(productsName);
         Assert.assertTrue(resultSearchPage.isPageOpened(), "Search Page was not opened!");
-        Assert.assertEquals(categoryName, resultSearchPage.getResultHeader(),
+        Assert.assertTrue(resultSearchPage.getHeader().contains(productsName),
                 "Item does not belong to the selected category");
     }
 }

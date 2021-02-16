@@ -1,16 +1,21 @@
-package demo.gui.pages;
+package demo.gui.pages.desktop;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import demo.gui.components.compare.*;
+import demo.gui.pages.common.HomeBasePage;
+import demo.gui.pages.common.PopularItemBasePage;
+import demo.gui.pages.common.SearchResultBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
-public class HomePage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = HomeBasePage.class)
+public class HomePage extends HomeBasePage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
 
@@ -35,8 +40,11 @@ public class HomePage extends AbstractPage {
     @FindBy(className = "navigationItem")
     private List<NavigateMenuComponent> navigateMenuHeader;
 
-    @FindBy(xpath = "//dd[contains(@class,'subnavDescription')]/a")
-    private List<ExtendedWebElement> navigateCategoryProducts;
+    @FindBy(xpath = "//dt[@class='subnavTerm']/a")
+    private List<ExtendedWebElement> navigateCategoryItem;
+
+    @FindBy(xpath = "//dl[@class='b-cloud-sub ']/dt/a")
+    private List<ExtendedWebElement> navigateProductsFromMenu;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -44,31 +52,35 @@ public class HomePage extends AbstractPage {
         setUiLoadedMarker(logo);
     }
 
-    public PopularItemPage openItemFromPrimaryPane(String title) {
+    public PopularItemBasePage openItemFromPrimaryPane(String title) {
         primeryComponents.stream().filter(e -> e.getNamePopularItem().equals(title)).findAny().get().openPopularItemPage();
-        return new PopularItemPage(this.driver);
+        return initPage(this.driver, PopularItemBasePage.class);
     }
 
-    public HomePage openMenuItem(String title) {
+    public HomeBasePage openMenuItem(String title) {
         navigateMenuHeader.stream().filter(e -> e.getNameMenuHeader().equals(title)).findAny().get().showMenuOptions();
         return this;
     }
 
-    public SearchResultPage openCategoryProducts(String title) {
-        navigateCategoryProducts.stream().filter(e -> e.getText().equals(title)).findAny().get().click();
-        return new SearchResultPage(this.driver);
+    public HomeBasePage openCategoryItem(String title) {
+        navigateCategoryItem.stream().filter(e -> e.getText().equals(title)).findAny().get().click();
+        return this;
     }
 
-    public SearchResultPage showSearchResult(String query){
+    public SearchResultBasePage openProductsFromNavigateMenu(String title) {
+        navigateProductsFromMenu.stream().filter(e -> e.getText().equals(title)).findAny().get().click();
+        return initPage(this.driver, SearchResultBasePage.class);
+    }
+
+    public SearchResultBasePage showSearchResult(String query){
         searchFrame.fillSearch(query);
         return searchFrame.submitSearch();
     }
 
-    public HomePage authorization(String email, String pass){
+    public HomeBasePage authorization(String email, String pass) {
         accountButton.click();
         loginButton.click();
         return loginFormComponent.login(email, pass);
-
     }
 
     public String getUserEmail(){

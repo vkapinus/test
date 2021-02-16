@@ -1,27 +1,41 @@
 package demo.gui.components.compare;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import demo.gui.pages.PopularItemPage;
+import demo.gui.pages.common.PopularItemBasePage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class PopularPrimeryComponent extends AbstractUIObject {
+public class PopularPrimeryComponent extends AbstractUIObject implements ICustomTypePageFactory {
 
     @FindBy(xpath = ".//span[@class = 'foreign_goods__name']/a")
     private ExtendedWebElement titleLabel;
+
+    @FindBy(css = "div>h3>a")
+    private ExtendedWebElement titleLabelAndroid;
 
     public PopularPrimeryComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public String getNamePopularItem() {
-        return titleLabel.getAttribute("title");
+        if (R.CONFIG.get("platform").equals("android")){
+            return titleLabelAndroid.getText();
+        } else {
+            return titleLabel.getAttribute("title");
+        }
     }
 
-    public PopularItemPage openPopularItemPage() {
-        titleLabel.click();
-        return new PopularItemPage(this.driver);
+    public PopularItemBasePage openPopularItemPage() {
+
+        if (R.CONFIG.get("platform").equals("android")){
+            titleLabelAndroid.click();
+        } else {
+            titleLabel.click();
+        }
+        return initPage(this.driver, PopularItemBasePage.class);
     }
 }

@@ -1,19 +1,23 @@
 package demo.gui.components.compare;
 
+import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.factory.ICustomTypePageFactory;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import demo.gui.pages.SearchResultPage;
-import org.openqa.selenium.Keys;
+import demo.gui.pages.common.SearchResultBasePage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class SearchFieldComponent extends AbstractUIObject {
+public class SearchFieldComponent extends AbstractUIObject implements ICustomTypePageFactory {
 
     @FindBy(id = "j-search")
     private ExtendedWebElement searchInput;
 
-    @FindBy(xpath = "//button[@name='sa']")
+    @FindBy(css = "input[type= submit]")
+    private ExtendedWebElement openSearchInputAndroid;
+
+    @FindBy(name = "sa")
     private ExtendedWebElement searchButton;
 
     public SearchFieldComponent(WebDriver driver, SearchContext context){
@@ -21,12 +25,17 @@ public class SearchFieldComponent extends AbstractUIObject {
     }
 
     public SearchFieldComponent fillSearch(String query) {
-        searchInput.type(query);
+        if (R.CONFIG.get("platform").equals("android")){
+            openSearchInputAndroid.click();
+            searchInput.type(query);
+        } else {
+            searchInput.type(query);
+        }
         return this;
     }
 
-    public SearchResultPage submitSearch(){
-        searchButton.sendKeys(Keys.ENTER);
-        return new SearchResultPage(driver);
+    public SearchResultBasePage submitSearch(){
+        searchButton.click();
+        return initPage(this.driver, SearchResultBasePage.class);
     }
 }

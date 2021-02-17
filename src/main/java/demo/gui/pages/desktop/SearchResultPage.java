@@ -1,9 +1,10 @@
-package demo.gui.pages;
+package demo.gui.pages.desktop;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import demo.gui.components.compare.ResultSearchComponent;
+import demo.gui.pages.common.SearchResultBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -11,7 +12,8 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SearchResultPage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = SearchResultBasePage.class)
+public class SearchResultPage extends SearchResultBasePage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SearchResultPage.class);
 
@@ -27,7 +29,7 @@ public class SearchResultPage extends AbstractPage {
         setUiLoadedMarker(resultHeader);
     }
 
-    public String getResultHeader(){
+    public String getHeader(){
         return resultHeader.getText();
     }
 

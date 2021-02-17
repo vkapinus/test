@@ -2,13 +2,15 @@ package demo.vek;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import demo.gui.pages.HomePage;
-import demo.gui.pages.SearchResultPage;
+import demo.gui.pages.common.HomeBasePage;
+import demo.gui.pages.common.SearchResultBasePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
+
+
 
 public class SearchTest extends AbstractTest {
     private static final String searchWord = "Утюг";
@@ -16,10 +18,10 @@ public class SearchTest extends AbstractTest {
     @Test
     @MethodOwner(owner = "kapinus")
     public void testSearchProduct() {
-        HomePage homePage = new HomePage(getDriver());
+        HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
-        SearchResultPage searchPage = homePage.showSearchResult(searchWord);
+        SearchResultBasePage searchPage = homePage.showSearchResult(searchWord);
         Assert.assertTrue(searchPage.isPageOpened(), "Result Search Page was not opened!");
         SoftAssert softAssert = new SoftAssert();
         List<String> productTitles = searchPage.getProductTitles();

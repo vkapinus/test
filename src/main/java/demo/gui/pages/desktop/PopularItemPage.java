@@ -1,14 +1,17 @@
-package demo.gui.pages;
+package demo.gui.pages.desktop;
 
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
+import demo.gui.pages.common.BasketBasePage;
+import demo.gui.pages.common.PopularItemBasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class PopularItemPage extends AbstractPage {
+@DeviceType(pageType = DeviceType.Type.DESKTOP, parentClass = PopularItemBasePage.class)
+public class PopularItemPage extends PopularItemBasePage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PopularItemPage.class);
 
@@ -30,10 +33,10 @@ public class PopularItemPage extends AbstractPage {
         setUiLoadedMarker(descriptionMenu);
     }
 
-    public BasketPage addItemToBasket(){
+    public BasketBasePage addItemToBasket(){
         inBasketButton.click();
         basketButton.click();
-        return new BasketPage(driver);
+        return initPage(this.driver, BasketBasePage.class);
     }
 
     public String getItemName(){

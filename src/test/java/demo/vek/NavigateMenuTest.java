@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.common.HomeBasePage;
 import demo.gui.pages.common.SearchResultBasePage;
 
+import demo.utils.MobileContextUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

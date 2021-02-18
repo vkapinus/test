@@ -10,28 +10,30 @@ import org.openqa.selenium.support.FindBy;
 public class NavigateMenuComponent extends AbstractUIObject {
 
     @FindBy(css = "span[class~=navigationLink]>span")
-    private ExtendedWebElement sectionHeader;
+    private ExtendedWebElement navigateMenuHeader;
 
     @FindBy(xpath = "//ul[@class='menu menu-top']/li/a[@class='top-level']")
-    private ExtendedWebElement navigateMenuHeaderAndroid;
+    private ExtendedWebElement navigateMenuHeaderMobile;
 
     public NavigateMenuComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public String getNameMenuHeader(){
-        if (R.CONFIG.get("platform").equals("android")) {
-            return navigateMenuHeaderAndroid.getText();
+        if (R.CONFIG.get("platform").equals("android") |
+                R.CONFIG.get("platform").equals("ios")) {
+            return navigateMenuHeaderMobile.getText();
         } else {
-            return sectionHeader.getText();
+            return navigateMenuHeader.getText();
         }
     }
 
     public NavigateMenuComponent showMenuOptions(){
-        if (R.CONFIG.get("platform").equals("android")) {
-            navigateMenuHeaderAndroid.click();
+        if (R.CONFIG.get("platform").equals("android") |
+                R.CONFIG.get("platform").equals("ios")) {
+            navigateMenuHeaderMobile.click();
         } else {
-            sectionHeader.click();
+            navigateMenuHeader.click();
         }
         return this;
     }

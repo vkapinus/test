@@ -7,20 +7,19 @@ import demo.gui.pages.common.PopularItemBasePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-
 public class PopularItemTest extends AbstractTest {
     private static final String ITEM_EXPECTED =
-            "Наушники-гарнитура Xiaomi Mi True Wireless Earbuds Basic 2 / BHR4272GL/TWSEJ061LS (черный)";
+            "Напольные весы электронные Xiaomi Mi Smart Scale 2 White / NUN4056GL (XMTZC04HM)";
 
     @Test
     @MethodOwner(owner = "kapinus")
-    public void testOpenItemP() {
+    public void testOpenItem() {
         HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         PopularItemBasePage itemPage = homePage.openItemFromPrimaryPane(ITEM_EXPECTED);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
-        Assert.assertEquals(itemPage.getItemName(), ITEM_EXPECTED,
+        Assert.assertTrue(itemPage.getItemName().contains(ITEM_EXPECTED),
                 "The title of the searched item and the title of the current item are not equals");
     }
 }

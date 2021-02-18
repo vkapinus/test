@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class AddPopularItemToBasketTest extends AbstractTest {
     private static final String ITEM_EXPECTED =
-            "Наушники-гарнитура Xiaomi Mi True Wireless Earbuds Basic 2 / BHR4272GL/TWSEJ061LS (черный)";
+            "Фитнес-трекер Xiaomi Mi Smart Band 5 / BHR4219RU";
 
     @Test
     @MethodOwner(owner = "kapinus")
@@ -23,7 +23,7 @@ public class AddPopularItemToBasketTest extends AbstractTest {
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
         BasketBasePage basketPage =  itemPage.addItemToBasket();
         Assert.assertTrue(basketPage.isPageOpened(), "Basket Page was not opened!");
-        Assert.assertEquals(basketPage.getItemName(), ITEM_EXPECTED,
+        Assert.assertTrue(basketPage.getItemName().contains(ITEM_EXPECTED),
                 "The Item was not added to basket");
         basketPage.openBasketFromItemPage();
         Assert.assertTrue(basketPage.showSuccessOrderConfirmation(),

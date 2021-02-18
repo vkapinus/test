@@ -14,19 +14,18 @@ public class ResultSearchComponent extends AbstractUIObject implements ICustomTy
     private ExtendedWebElement resultItem;
 
     @FindBy(css="div>h3>a")
-    private ExtendedWebElement resultItemAndroid;
+    private ExtendedWebElement resultItemMobile;
 
     public ResultSearchComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public String getNameItem() {
-
-        if (R.CONFIG.get("platform").equals("android")){
-            return resultItemAndroid.getText();
+        if (R.CONFIG.get("platform").equals("android") |
+                R.CONFIG.get("platform").equals("ios")){
+            return resultItemMobile.getText();
         } else {
             return resultItem.getText();
         }
     }
-
 }

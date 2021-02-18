@@ -15,7 +15,7 @@ public class SearchFieldComponent extends AbstractUIObject implements ICustomTyp
     private ExtendedWebElement searchInput;
 
     @FindBy(css = "input[type= submit]")
-    private ExtendedWebElement openSearchInputAndroid;
+    private ExtendedWebElement openSearchInputMobile;
 
     @FindBy(name = "sa")
     private ExtendedWebElement searchButton;
@@ -25,8 +25,9 @@ public class SearchFieldComponent extends AbstractUIObject implements ICustomTyp
     }
 
     public SearchFieldComponent fillSearch(String query) {
-        if (R.CONFIG.get("platform").equals("android")){
-            openSearchInputAndroid.click();
+        if (R.CONFIG.get("platform").equals("android") |
+                R.CONFIG.get("platform").equals("ios")){
+            openSearchInputMobile.click();
             searchInput.type(query);
         } else {
             searchInput.type(query);
@@ -34,7 +35,7 @@ public class SearchFieldComponent extends AbstractUIObject implements ICustomTyp
         return this;
     }
 
-    public SearchResultBasePage submitSearch(){
+    public SearchResultBasePage submitSearch() {
         searchButton.click();
         return initPage(this.driver, SearchResultBasePage.class);
     }

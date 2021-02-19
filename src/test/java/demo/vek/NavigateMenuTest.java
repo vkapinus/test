@@ -1,6 +1,7 @@
 package demo.vek;
 
 import com.qaprosoft.carina.core.foundation.AbstractTest;
+import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.common.HomeBasePage;
 import demo.gui.pages.common.SearchResultBasePage;
@@ -10,13 +11,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class NavigateMenuTest extends AbstractTest{
-    private static final String sectionName = "Для кухни";
-    private static final String categoryName = "Мелкая техника";
-    private static final String productsName = "Тостеры";
 
-    @Test
+    @Test(dataProvider = "DataProvider")
+    @XlsDataSourceParameters(path = "xls/navigate.xlsx", sheet = "Navigate", dsUid = "TUID", dsArgs = "sectionName, categoryName, productsName")
     @MethodOwner(owner = "kapinus")
-    public void testNavigateMenu() {
+    public void testNavigateMenu(String sectionName, String categoryName, String productsName) {
         HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");

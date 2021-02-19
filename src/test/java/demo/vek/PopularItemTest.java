@@ -8,8 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class PopularItemTest extends AbstractTest {
-    private static final String ITEM_EXPECTED =
-            "Напольные весы электронные Xiaomi Mi Smart Scale 2 White / NUN4056GL (XMTZC04HM)";
+    private static String ITEM_EXPECTED;
 
     @Test
     @MethodOwner(owner = "kapinus")

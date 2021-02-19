@@ -10,8 +10,7 @@ import org.testng.annotations.Test;
 
 
 public class AddPopularItemToBasketTest extends AbstractTest {
-    private static final String ITEM_EXPECTED =
-            "Фитнес-трекер Xiaomi Mi Smart Band 5 / BHR4219RU";
+    private static String ITEM_EXPECTED;
 
     @Test
     @MethodOwner(owner = "kapinus")

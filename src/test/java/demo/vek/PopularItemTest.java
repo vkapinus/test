@@ -18,10 +18,10 @@ public class PopularItemTest extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         int itemIndex = new Random().nextInt(homePage.getComponents().size() - 1);
-        String expected = homePage.getNameByIndex(itemIndex);
-        PopularItemBasePage itemPage = homePage.openPrimeryItem(expected);
+        String expectedItemName = homePage.getNameByIndex(itemIndex);
+        PopularItemBasePage itemPage = homePage.openPrimeryItem(expectedItemName);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
-        Assert.assertEquals(itemPage.getItemName(), expected,
+        Assert.assertEquals(itemPage.getItemName(), expectedItemName,
                 "The title of the searched item and the title of the current item are not equals");
     }
 }

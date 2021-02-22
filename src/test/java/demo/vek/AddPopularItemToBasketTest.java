@@ -20,12 +20,12 @@ public class AddPopularItemToBasketTest extends AbstractTest {
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         int itemIndex = new Random().nextInt(homePage.getComponents().size() - 1);
-        String expected = homePage.getNameByIndex(itemIndex);
-        PopularItemBasePage itemPage = homePage.openPrimeryItem(expected);
+        String expectedItemName = homePage.getNameByIndex(itemIndex);
+        PopularItemBasePage itemPage = homePage.openPrimeryItem(expectedItemName);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
         BasketBasePage basketPage =  itemPage.addItemToBasket();
         Assert.assertTrue(basketPage.isPageOpened(), "Basket Page was not opened!");
-        Assert.assertTrue(basketPage.getItemName().contains(expected),
+        Assert.assertTrue(basketPage.getItemName().contains(expectedItemName),
                 "The Item was not added to basket");
         basketPage.openBasketFromItemPage();
         Assert.assertTrue(basketPage.showSuccessOrderConfirmation(),

@@ -26,7 +26,7 @@ public class HomePage extends HomeBasePage {
     private SearchFieldComponent searchFrame;
 
     @FindBy(xpath = "//ul[@class ='b-foreign_goods']/li")
-    private List<PopularPrimeryComponent> primeryComponents;
+    private List<PopularPrimeryComponent> primeryComponenents;
 
     @FindBy(css = "div[role=button]>div>button")
     private ExtendedWebElement accountButton;
@@ -52,9 +52,15 @@ public class HomePage extends HomeBasePage {
         setUiLoadedMarker(logo);
     }
 
-    public PopularItemBasePage openItemFromPrimaryPane(String title) {
-        primeryComponents.stream().filter(e -> e.getNamePopularItem().equals(title)).findAny().get().openPopularItemPage();
+    public List<PopularPrimeryComponent> getComponents() {
+        return primeryComponenents;
+    }
+    public PopularItemBasePage openPrimeryItem(String title) {
+        primeryComponenents.stream().filter(e -> e.getNamePopularItem().equals(title)).findAny().get().openPopularItemPage();
         return initPage(this.driver, PopularItemBasePage.class);
+    }
+    public String getNameByIndex (int index){
+        return primeryComponenents.get(index).getNamePopularItem();
     }
 
     public HomeBasePage openMenuItem(String title) {

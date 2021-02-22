@@ -8,9 +8,10 @@ import demo.gui.pages.common.PopularItemBasePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 
 public class AddPopularItemToBasketTest extends AbstractTest {
-    private static String ITEM_EXPECTED;
 
     @Test
     @MethodOwner(owner = "kapinus")
@@ -18,11 +19,13 @@ public class AddPopularItemToBasketTest extends AbstractTest {
         HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
-        PopularItemBasePage itemPage = homePage.openItemFromPrimaryPane(ITEM_EXPECTED);
+        int itemIndex = new Random().nextInt(homePage.getComponents().size() - 1);
+        String expected = homePage.getNameByIndex(itemIndex);
+        PopularItemBasePage itemPage = homePage.openPrimeryItem(expected);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
         BasketBasePage basketPage =  itemPage.addItemToBasket();
         Assert.assertTrue(basketPage.isPageOpened(), "Basket Page was not opened!");
-        Assert.assertTrue(basketPage.getItemName().contains(ITEM_EXPECTED),
+        Assert.assertTrue(basketPage.getItemName().contains(expected),
                 "The Item was not added to basket");
         basketPage.openBasketFromItemPage();
         Assert.assertTrue(basketPage.showSuccessOrderConfirmation(),

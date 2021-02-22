@@ -7,8 +7,9 @@ import demo.gui.pages.common.PopularItemBasePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Random;
+
 public class PopularItemTest extends AbstractTest {
-    private static String ITEM_EXPECTED;
 
     @Test
     @MethodOwner(owner = "kapinus")
@@ -16,9 +17,11 @@ public class PopularItemTest extends AbstractTest {
         HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
-        PopularItemBasePage itemPage = homePage.openItemFromPrimaryPane(ITEM_EXPECTED);
+        int itemIndex = new Random().nextInt(homePage.getComponents().size() - 1);
+        String expected = homePage.getNameByIndex(itemIndex);
+        PopularItemBasePage itemPage = homePage.openPrimeryItem(expected);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
-        Assert.assertTrue(itemPage.getItemName().contains(ITEM_EXPECTED),
+        Assert.assertEquals(itemPage.getItemName(), expected,
                 "The title of the searched item and the title of the current item are not equals");
     }
 }

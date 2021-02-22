@@ -21,7 +21,7 @@ public class PopularItemTest extends AbstractTest {
         String expectedItemName = homePage.getNameByIndex(itemIndex);
         PopularItemBasePage itemPage = homePage.openPrimeryItem(expectedItemName);
         Assert.assertTrue(itemPage.isPageOpened(), "Popular Item Page was not opened!");
-        Assert.assertEquals(itemPage.getItemName(), expectedItemName,
+        Assert.assertTrue(itemPage.getItemName().contains(expectedItemName),
                 "The title of the searched item and the title of the current item are not equals");
     }
 }

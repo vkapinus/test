@@ -1,8 +1,8 @@
-package demo.gui.pages.android;
+package demo.gui.pages.iOs;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ElementLoadingStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import demo.gui.components.compare.LoginFormComponent;
 import demo.gui.components.compare.NavigateMenuComponent;
 import demo.gui.components.compare.PopularPrimeryComponent;
@@ -10,12 +10,12 @@ import demo.gui.components.compare.SearchFieldComponent;
 import demo.gui.pages.common.HomeBasePage;
 import demo.gui.pages.common.PopularItemBasePage;
 import demo.gui.pages.common.SearchResultBasePage;
+import demo.utils.MobileContextUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.List;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomeBasePage.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HomeBasePage.class)
 public class HomePage extends HomeBasePage {
 
     @FindBy(className = "logo")
@@ -30,7 +30,7 @@ public class HomePage extends HomeBasePage {
     @FindBy(className = "mini-profile")
     private ExtendedWebElement accountButton;
 
-    @FindBy(css = "button[class~=Button_button__2i_Ws]")
+    @ExtendedFindBy(iosPredicate = "label == 'Войти'")
     private ExtendedWebElement loginButton;
 
     @FindBy(className = "root")
@@ -39,22 +39,19 @@ public class HomePage extends HomeBasePage {
     @FindBy(className = "g-btn")
     private ExtendedWebElement openMenu;
 
-    @FindBy(xpath = "//ul[@class='menu menu-top']/li")
+    @FindBy(xpath = "//ul[contains(@class, 'menu-top')]/li")
     private List<NavigateMenuComponent> navigateMenuHeader;
 
-    @FindBy(xpath = ".//ul[@class='submenu']/li/a[@class='top-level']/span")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeLink")
     private List<ExtendedWebElement> navigateCategoryItem;
 
-    @FindBy(xpath = ".//ul[@class='submenu']/li/a/span")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther/XCUIElementTypeLink")
     private List<ExtendedWebElement> navigateProductsFromMenu;
 
     public HomePage(WebDriver driver) {
         super(driver);
-        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
         setUiLoadedMarker(logo);
     }
-
-
     public List<PopularPrimeryComponent> getComponents() {
         return primeryComponents;
     }
@@ -68,11 +65,13 @@ public class HomePage extends HomeBasePage {
 
     public HomeBasePage openMenuItem(String title) {
         openMenu.click();
-        navigateMenuHeader.stream().filter(e -> e.getNameMenuHeader().contains(title)).findAny().get().showMenuOptions();
+        navigateMenuHeader.stream().filter(e -> e.getNameMenuHeader().equals(title)).findAny().get().showMenuOptions();
         return this;
     }
 
     public HomeBasePage openCategoryItem(String title) {
+        MobileContextUtils contextHelper = new MobileContextUtils();
+        contextHelper.switchMobileContext(MobileContextUtils.View.NATIVE);
         navigateCategoryItem.stream().filter(e -> e.getText().equals(title)).findAny().get().click();
         return this;
     }
@@ -89,11 +88,16 @@ public class HomePage extends HomeBasePage {
 
     public HomeBasePage authorization(String email, String pass) {
         accountButton.click();
+        MobileContextUtils contextHelper = new MobileContextUtils();
+        contextHelper.switchMobileContext(MobileContextUtils.View.NATIVE);
         loginButton.click();
         return loginFormComponent.login(email, pass);
+
     }
 
     public String getUserEmail() {
+        MobileContextUtils contextHelper = new MobileContextUtils();
+        contextHelper.switchMobileContext(MobileContextUtils.View.WEB);
         accountButton.click();
         return loginFormComponent.getUserEmail();
     }

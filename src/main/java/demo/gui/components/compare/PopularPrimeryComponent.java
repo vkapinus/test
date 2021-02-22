@@ -15,24 +15,25 @@ public class PopularPrimeryComponent extends AbstractUIObject implements ICustom
     private ExtendedWebElement titleLabel;
 
     @FindBy(css = "div>h3>a")
-    private ExtendedWebElement titleLabelAndroid;
+    private ExtendedWebElement titleLabelMobile;
 
     public PopularPrimeryComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public String getNamePopularItem() {
-        if (R.CONFIG.get("platform").equals("android")){
-            return titleLabelAndroid.getText();
+        if (R.CONFIG.get("platform").equals("android") |
+                R.CONFIG.get("platform").equals("ios")) {
+            return titleLabelMobile.getText();
         } else {
             return titleLabel.getAttribute("title");
         }
     }
 
     public PopularItemBasePage openPopularItemPage() {
-
-        if (R.CONFIG.get("platform").equals("android")){
-            titleLabelAndroid.click();
+        if (R.CONFIG.get("platform").equals("android") |
+                R.CONFIG.get("platform").equals("ios")) {
+            titleLabelMobile.click();
         } else {
             titleLabel.click();
         }

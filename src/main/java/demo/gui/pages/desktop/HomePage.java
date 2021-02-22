@@ -52,9 +52,15 @@ public class HomePage extends HomeBasePage {
         setUiLoadedMarker(logo);
     }
 
-    public PopularItemBasePage openItemFromPrimaryPane(String title) {
+    public List<PopularPrimeryComponent> getComponents() {
+        return primeryComponents;
+    }
+    public PopularItemBasePage openPrimeryItem(String title) {
         primeryComponents.stream().filter(e -> e.getNamePopularItem().equals(title)).findAny().get().openPopularItemPage();
         return initPage(this.driver, PopularItemBasePage.class);
+    }
+    public String getNameByIndex (int index){
+        return primeryComponents.get(index).getNamePopularItem();
     }
 
     public HomeBasePage openMenuItem(String title) {

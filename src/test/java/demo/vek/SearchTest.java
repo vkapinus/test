@@ -10,8 +10,6 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
-
-
 public class SearchTest extends AbstractTest {
     private static final String searchWord = "Утюг";
 

@@ -33,3 +33,4 @@ reports/*
 *new_custom_messages_*.properties
 /bin/
 src/main/resources/_config.properties
+*.key

@@ -50,7 +50,6 @@ public class HomePage extends HomeBasePage {
 
     public HomePage(WebDriver driver) {
         super(driver);
-        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
         setUiLoadedMarker(logo);
     }
 

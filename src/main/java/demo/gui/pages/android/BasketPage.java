@@ -27,7 +27,6 @@ public class BasketPage extends BasketBasePage{
 
     public BasketPage(WebDriver driver) {
         super(driver);
-        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
         setUiLoadedMarker(contentHeader);
     }
 

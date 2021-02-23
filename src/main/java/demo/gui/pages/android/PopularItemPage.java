@@ -25,7 +25,6 @@ public class PopularItemPage extends PopularItemBasePage {
 
     public PopularItemPage(WebDriver driver) {
         super(driver);
-        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
         setUiLoadedMarker(descriptionMenu);
     }
 

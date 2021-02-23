@@ -15,7 +15,6 @@ public class MobileContextUtils implements IDriverPool {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-
     private WebDriver getDriverSafe() {
         WebDriver driver = getDriver();
         if (driver instanceof EventFiringWebDriver) {

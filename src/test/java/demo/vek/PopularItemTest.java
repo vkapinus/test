@@ -6,7 +6,6 @@ import demo.gui.pages.common.HomeBasePage;
 import demo.gui.pages.common.PopularItemBasePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.util.Random;
 
 public class PopularItemTest extends AbstractTest {

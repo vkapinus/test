@@ -25,7 +25,6 @@ public class SearchResultPage extends SearchResultBasePage {
 
     public SearchResultPage(WebDriver driver) {
         super(driver);
-        setLoadingStrategy(ElementLoadingStrategy.BY_PRESENCE);
         setUiLoadedMarker(resultHeader);
     }
 

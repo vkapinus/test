@@ -10,7 +10,7 @@ services:
       - "/Users/viktoriakapinus/Documents/21/test/config:/opt/selenoid/video"
       - "/Users/viktoriakapinus/Documents/21/test/config:/opt/selenoid/logs"
     ports:
-      - 4444:4444
+      - 4445:4444
     environment:
       - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/viktoriakapinus/Documents/21/test/config/video
     command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/log" ]
@@ -20,7 +20,7 @@ services:
     image: aerokube/selenoid-ui
     ports:
       - 8080:8080
-    command: ["--webdriver-uri", "http://ggr:4443", "--selenoid-uri", "http://ggr-ui:8888"]
+    command: ["--selenoid-uri", "http://selenoid:4444"]
     links:
       - ggr-ui
       - selenoid
@@ -33,6 +33,7 @@ services:
       - 4443:4443
     volumes:
       - "/Users/viktoriakapinus/Documents/21/test/config:/etc/grid-router"
+    command: [ "-listen", ":4443"]
 
   ggr-ui:
     network_mode: bridge

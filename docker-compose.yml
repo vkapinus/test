@@ -20,7 +20,7 @@ services:
     image: aerokube/selenoid-ui
     ports:
       - 8080:8080
-    command: ["--webdriver-uri", "http://ggr:4445", "--selenoid-uri", "http://ggr-ui:8888"]
+    command: ["--webdriver-uri", "http://ggr:4443", "--selenoid-uri", "http://ggr-ui:8888"]
     links:
       - ggr-ui
       - selenoid
@@ -30,7 +30,7 @@ services:
     restart: always
     image: aerokube/ggr:latest-release
     ports:
-      - 4445:4445
+      - 4443:4443
     volumes:
       - "/Users/viktoriakapinus/Documents/21/test/config:/etc/grid-router"
 

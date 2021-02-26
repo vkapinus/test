@@ -1,0 +1,35 @@
+{
+  "chrome": {
+    "default": "88.0",
+    "versions": {
+      "88.0": {
+        "image": "selenoid/vnc:chrome_88.0",
+        "env" : ["LANG=ru_RU.UTF-8", "LANGUAGE=ru:en", "LC_ALL=ru_RU.UTF-8"],
+        "port": "4444",
+        "path": "/"
+      }
+    }
+  },
+  "firefox": {
+    "default": "85.0",
+    "versions": {
+      "85.0": {
+        "image": "selenoid/vnc:firefox_85.0",
+        "port": "4444",
+        "path": "/wd/hub"
+      }
+    }
+  },
+  "MicrosoftEdge": {
+    "default": "88.0",
+    "versions": {
+      "88.0": {
+        "image": "browsers/edge:88.0",
+        "port": "4444",
+        "path": "/",
+        "cpu" : "1.0",
+        "mem" : "512m"
+      }
+    }
+  }
+}

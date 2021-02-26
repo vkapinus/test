@@ -33,7 +33,6 @@ services:
       - 4443:4443
     volumes:
       - "/Users/viktoriakapinus/Documents/21/test/config:/etc/grid-router"
-    command: [ "-listen", ":4443"]
 
   ggr-ui:
     network_mode: bridge

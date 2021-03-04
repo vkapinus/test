@@ -10,6 +10,10 @@ import org.testng.annotations.Test;
 
 public class AuthorizationTest extends AbstractTest {
 
+
+    String email = "parvikus@gmail.com";
+    String pass = "Vikadima1307";
+
     @Parameters({"browserName"})
     @Test
     @MethodOwner(owner = "kapinus")
@@ -17,8 +21,8 @@ public class AuthorizationTest extends AbstractTest {
         HomeBasePage homePage = initPage(getDriver(browserName), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
-        homePage.authorization(R.TESTDATA.get("email"), R.TESTDATA.get("pass"));
-        Assert.assertEquals(homePage.getUserEmail(), R.TESTDATA.get("email"),
+        homePage.authorization(email, pass);
+        Assert.assertEquals(homePage.getUserEmail(), email,
                 "Authorization was not successful");
     }
 }

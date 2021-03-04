@@ -12,11 +12,10 @@ import java.util.Random;
 
 public class AddPopularItemToBasketTest extends AbstractTest {
 
-    @Parameters({"browserName"})
     @Test
     @MethodOwner(owner = "kapinus")
-    public void testAddItemToBasket(String browserName) {
-        HomeBasePage homePage = initPage(getDriver(browserName), HomeBasePage.class);
+    public void testAddItemToBasket() {
+        HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         int itemIndex = new Random().nextInt(homePage.getComponents().size() - 1);

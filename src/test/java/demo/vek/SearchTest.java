@@ -14,10 +14,9 @@ public class SearchTest extends AbstractTest {
     private static final String searchWord = "Утюг";
 
     @Test
-    @Parameters({"browserName"})
     @MethodOwner(owner = "kapinus")
-    public void testSearchProduct(String browserName) {
-        HomeBasePage homePage = initPage(getDriver(browserName), HomeBasePage.class);
+    public void testSearchProduct() {
+        HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         SearchResultBasePage searchPage = homePage.showSearchResult(searchWord);

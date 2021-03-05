@@ -38,7 +38,7 @@ services:
       - "/Users/viktoriakapinus/Documents/webTests/config:/opt/selenoid/video"
       - "/Users/viktoriakapinus/Documents/webTests/config:/opt/selenoid/logs"
     ports:
-      - 4445:4444
+      - 4444:4444
     environment:
       - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/viktoriakapinus/Documents/webTests/config/video
     command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/log"]

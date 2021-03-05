@@ -2,21 +2,21 @@
     <browser name="firefox" defaultVersion="85.0">
         <version number="85.0">
             <region name="1">
-                <host name="docker.for.mac.localhost" port="4445" count="1"/>
+                <host name="docker.for.mac.localhost" port="4444" count="1"/>
             </region>
         </version>
     </browser>
     <browser name="MicrosoftEdge" defaultVersion="88.0">
         <version number="88.0">
             <region name="1">
-                <host name="docker.for.mac.localhost" port="4445" count="1"/>
+                <host name="docker.for.mac.localhost" port="4444" count="1"/>
             </region>
         </version>
     </browser>
     <browser name="chrome" defaultVersion="88.0">
         <version number="88.0">
             <region name="1">
-                <host name="docker.for.mac.localhost" port="4445" count="1"/>
+                <host name="docker.for.mac.localhost" port="4444" count="1"/>
             </region>
         </version>
     </browser>

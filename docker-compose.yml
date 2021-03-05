@@ -23,11 +23,11 @@ services:
     network_mode: bridge
     image: aerokube/ggr:latest-release
     ports:
-      - 4443:4443
+      - 4446:4446
     restart: always
     volumes:
       - /Users/viktoriakapinus/Documents/webTests/etc/grid-router:/etc/grid-router:ro
-
+    command: [ "-listen", ":4446"]
 
   selenoid:
     network_mode: bridge

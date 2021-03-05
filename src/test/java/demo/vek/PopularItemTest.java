@@ -5,7 +5,6 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.common.HomeBasePage;
 import demo.gui.pages.common.PopularItemBasePage;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import java.util.Random;
 

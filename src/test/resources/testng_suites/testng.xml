@@ -9,6 +9,7 @@
 
     <parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
     <parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
+    <parameter name="browser::browser::parameter description" value="chrome,firefox,MicrosoftEdge"/>
     <test name="vekTest" parallel="tests">
         <parameter name="browserName" value="chrome"></parameter>
         <packages>

@@ -2,7 +2,6 @@
 
 <suite name="q" verbose="1">
     <parameter name="suiteOwner" value="vkapinus"/>
-    <parameter name="zafira_project" value="UNKNOWN"/>
     <parameter name="jenkinsJobName" value="WebTests"/>
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>

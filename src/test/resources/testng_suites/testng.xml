@@ -6,7 +6,7 @@
     <parameter name="jenkinsJobType" value="web"/>
     <parameter name="jenkinsEmail" value="vkapinus@solvd.com"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>
-    <parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
+<!--    <parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>-->
 
 <!--    <parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>-->
 <!--    <parameter name="jenkinsRegressionMatrix" value="env: DEMO, branch: master; env:PROD, branch: prod"/>-->

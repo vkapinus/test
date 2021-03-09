@@ -2,16 +2,19 @@
 
 <suite name="q" verbose="1">
     <parameter name="suiteOwner" value="vkapinus"/>
-    <parameter name="jenkinsJobName" value="WebTestsFromGit"/>
+    <parameter name="zafira_project" value="UNKNOWN"/>
+    <parameter name="jenkinsJobName" value="WebTests"/>
     <parameter name="jenkinsJobType" value="web"/>
-    <parameter name="jenkinsEmail" value="vkapinus@solvd.com"/>
     <parameter name="jenkinsEnvironments" value="DEMO"/>
-    <parameter name="jenkinsRegressionPipeline" value="nightly_regression, full_regression"/>
+    <parameter name="jenkinsEmail" value="vkapinus@solvd.com"/>
+    <parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
+    <parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
+    <parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox; browser: opera"/>
+    <parameter name="jenkinsJobExecutionOrder" value="1"/>
+    <parameter name="jenkinsJobExecutionMode" value="continue"/>
 
-    <parameter name="jenkinsRegressionPipeline" value="Carina-Demo-Regression-Pipeline"/>
-    <parameter name="jenkinsRegressionMatrix" value="env: DEMO, branch: master; env:PROD, branch: prod"/>
     <test name="vekTest" parallel="tests">
-        <parameter name="browserName" value="chrome"></parameter>
+<!--        <parameter name="browserName" value="chrome"></parameter>-->
         <packages>
             <package name="demo.vek">
             </package>

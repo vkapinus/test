@@ -8,7 +8,7 @@
     <parameter name="jenkinsEmail" value="vkapinus@solvd.com"/>
     <parameter name="jenkinsRegressionPipeline" value="web_regression, full_regression"/>
     <parameter name="jenkinsPipelineEnvironments" value="DEMO"/>
-    <parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox; browser: edge"/>
+    <parameter name="jenkinsRegressionMatrix_full_regression" value="browser: chrome; browser: firefox"/>
 
     <test name="vekTest" parallel="tests">
         <packages>

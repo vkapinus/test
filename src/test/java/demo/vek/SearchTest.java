@@ -24,6 +24,6 @@ public class SearchTest extends AbstractTest {
         List<String> productTitles = searchPage.getProductTitles();
         productTitles.forEach(e->softAssert.assertTrue(e.contains(searchWord),
                 "The titles of the searched items and the title of the current item are not equals!"));
-        softAssert.assertAll();
+        softAssert.assertAll()
     }
 }

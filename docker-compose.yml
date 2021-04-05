@@ -1,38 +1,14 @@
 version: '3'
 services:
-
-  selenoid:
-    network_mode: bridge
-    image: aerokube/selenoid
-    volumes:
-      - "/Users/viktoriakapinus/Documents/21/test/config:/etc/selenoid"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/Users/viktoriakapinus/Documents/21/test/config:/opt/selenoid/video"
-      - "/Users/viktoriakapinus/Documents/21/test/config:/opt/selenoid/logs"
-    ports:
-      - 4445:4444
-    environment:
-      - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/viktoriakapinus/Documents/21/test/config/video
-    command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/log" ]
-
   selenoid-ui:
     network_mode: bridge
     image: aerokube/selenoid-ui
     ports:
-      - 8080:8080
+      - 8090:8080
     command: ["--selenoid-uri", "http://selenoid:4444"]
     links:
       - ggr-ui
       - selenoid
-
-  ggr:
-    network_mode: bridge
-    restart: always
-    image: aerokube/ggr:latest-release
-    ports:
-      - 4443:4443
-    volumes:
-      - "/Users/viktoriakapinus/Documents/21/test/config:/etc/grid-router"
 
   ggr-ui:
     network_mode: bridge
@@ -41,4 +17,28 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - "/Users/viktoriakapinus/Documents/21/test/config:/etc/grid-router"
+      - /Users/viktoriakapinus/Documents/webTests/etc/grid-router:/etc/grid-router:ro
+
+  ggr:
+    network_mode: bridge
+    image: aerokube/ggr:latest-release
+    ports:
+      - 4446:4446
+    restart: always
+    volumes:
+      - /Users/viktoriakapinus/Documents/webTests/etc/grid-router:/etc/grid-router:ro
+    command: [ "-listen", ":4446"]
+
+  selenoid:
+    network_mode: bridge
+    image: aerokube/selenoid
+    volumes:
+      - "/Users/viktoriakapinus/Documents/webTests/config:/etc/selenoid"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/Users/viktoriakapinus/Documents/webTests/config:/opt/selenoid/video"
+      - "/Users/viktoriakapinus/Documents/webTests/config:/opt/selenoid/logs"
+    ports:
+      - 4444:4444
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=/Users/viktoriakapinus/Documents/webTests/config/video
+    command: [ "-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/log"]

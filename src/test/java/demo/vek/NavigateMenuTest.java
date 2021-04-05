@@ -5,29 +5,17 @@ import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSour
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import demo.gui.pages.common.HomeBasePage;
 import demo.gui.pages.common.SearchResultBasePage;
-
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 public class NavigateMenuTest extends AbstractTest{
-
-    private WebDriver driver;
-
-    @BeforeMethod
-    @Parameters({"browserName"})
-    private void start(String browserName) {
-        driver = getDriver(browserName);
-    }
 
     @Test(dataProvider = "DataProvider")
     @XlsDataSourceParameters(path = "xls/navigate.xlsx", sheet = "Navigate", dsUid = "TUID",
             dsArgs = "sectionName, categoryName, productsName")
     @MethodOwner(owner = "kapinus")
     public void testNavigateMenu( String sectionName, String categoryName, String productsName) {
-        HomeBasePage homePage = initPage(this.driver, HomeBasePage.class);
+        HomeBasePage homePage = initPage(getDriver(), HomeBasePage.class);
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(), "21vek home page was not opened!");
         homePage.openMenuItem(sectionName);
